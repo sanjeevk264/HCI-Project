@@ -1,0 +1,21 @@
+body{
+	text-align:center;
+	
+	background-image: url("pricing11.jpg");
+	background-size: 100% 250%;
+	background-repeat:no-repeat;
+}
+
+#heading1 {
+	color:linen;
+	font-family: "Verdana", Times, serif;
+	font-weight:bold;
+	font-size:40px;
+}
+
+#heading2 {
+	color:#ccffcc;
+	font-family: "Verdana", Times, serif;
+	font-weight:bold;
+	font-size:40px;
+}

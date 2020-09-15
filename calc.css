@@ -1,0 +1,17 @@
+body 
+{
+    background-image: url("download.jpeg");
+}
+
+
+.nav li{border-right:solid black 1px;}
+.myclass{background-color:#ffffff; font-color:#ffffff; font-size:20px;}
+#heading1{text-align:center;}
+#outer{width:90%;height:100%;margin-left:5%;background:#fff;text-align:center;}
+#cover{border:2px solid #111;border-radius:7px;box-shadow:inset 0 0 13px #888;padding:7px 0}
+.main{table-layout:fixed;width:94%;border:0;border-collapse:collapse;margin:0 auto;}
+.main td{padding:0 8px;vertical-align:middle;text-align:left;border:0;font:500 25px arial}
+.main input{width:96%;border:1px solid #ccc;margin:2px 0;padding:0 5%;height:35px;text-align:right;font:500 25px arial;background:none;}
+td.ac {text-align:center}
+.main select{width:100%;border:1px solid #ccc;margin:2px 0;background:#fff;height:35px;font:500 25px arial}
+.main button{width:100%;font:600 25px arial;margin:2px 0;}

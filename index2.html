@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<head>
+	<title>Shape Shifters Calculator</title>
+	<link rel="shortcut icon" href="img/favicons/favicon.ico">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="calc.css">
+</head>
+<body>
+	<div class="myclass">
+	<ul class="nav nav-tabs">
+		<li class="active"><a data-toggle="tab" href="#home">Body Mass Index</a></li>
+		<li><a data-toggle="tab" href="#menu1">Fat Percentage Calculator</a></li>
+		<li><a data-toggle="tab" href="#menu2">Ideal Weight Calculator</a></li>
+		
+		<li style="float:right;"><a href="index.html" target="_blank">HOME</a></li>
+	</ul>
+	</div>
+
+	<div class="tab-content">
+		<div id="home" class="tab-pane fade in active">
+			<h2 id="heading1"><b>Body Mass Index</b></h2>
+				<div class="panel2">
+				<div id=outer>
+					<div id=cover>
+						<form name=fn>
+							<table class=main><col width=60%><col width=40%>
+							<tr>
+								<td id=$msm>Measuring System
+								<td>
+									<select id=msm onchange=msystem();>
+										<option value=metric>Metric (Kgs, Cms)
+										<option value=us>US (lbs, inches)
+									</select>
+							<br>
+							<tr>
+								<td>Height
+								<span id=thm></span>
+								<td><input id=hm>
+							<br>
+							<tr>
+								<td>Weight 
+								<span id=twm>(Kgs)</span>
+								<td><input id=wm>
+							<br>
+							<tr>
+								<td><button type=reset>Reset</button>
+								<td><button type=button onclick='bmass();'>Submit</button>
+							<br>
+							<tr>
+								<td>Body Mass Index (BMI)
+								<td><input id=bmi class=op>
+							<br>
+							<tr>
+								<td>Normal BMI range
+								<td><input class=op id=nbmi value='18.5-25 kg/m2'>
+							<br>
+							<tr>
+								<td colspan=2 class=ac>
+								<br>The calculations are based on WHO recommendations.
+							</table>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-    ----------------- ->
+		<div id="menu1" class="tab-pane fade">
+			<div class="panel2" style="padding:10px;">
+				<h2 id="heading1"><b>Fat Percentage Calculator</b></h2>
+				<div id=outer>
+					<div id=cover>
+						<form name=fp>
+							<table class=main>
+								<col width=60%><col width=40%>
+								<tr>
+									<td>Measuring System
+									<td><select id=msf onchange=msystem();>
+											<option value=metric>Metric (Kgs, Cms)
+											<option value=us>US (lbs, inches)
+										</select>
+								<tr>
+									<td>Sex
+									<td><select id=sf>
+											<option value=m>Male
+											<option value=f>Female
+										</select>
+								<tr>
+									<td>Height 
+									<span id=thf>(Cms)</span>
+									<td><input id=hf>
+								<tr>
+									<td>Neck Girth
+									<span id=tneck> (Cms)</span>
+									<td><input id=neck>
+								<tr>
+									<td>Waist 
+									<span id=twaist>(Cms)</span>
+									<td><input id=waist>
+								<tr>
+									<td>Hips 
+										<span id=thips>(Cms)</span>
+									<td><input id=hips>
+								<tr>
+									<td><button type=reset>Reset</button>
+									<td>
+									<button type=button onclick='bfat();'>Submit</button>
+								<tr>
+									<td>Your Body Fat
+									<td><input id=bf class=op>
+								<tr>
+									<td>Body Fat Category
+									<td><input id=nbf class=op>
+								<tr>
+									<td colspan=2 class=ac>Calculations are as per US Navy Formula
+							</table>
+						</form>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<!- --------------------------------------- ->
+		<div id="menu2" class="tab-pane fade">
+				<div class="panel2" style="padding:10px;">
+					<h2 id="heading1"><b>Ideal Weight Calculator</b></h2>
+						<div id=outer>
+							
+								<div id=cover>
+									<form name=iw>
+										<table class=main>
+											<col width=60%>
+											<col width=40%>
+											<tr>
+												<td>Measuring System<td>
+												<select id=msw onchange=msystem();>
+													<option value=metric>Metric (Kgs, Cms)
+													<option value=us>US (lbs, inches)
+												</select>
+											<tr>
+											<td>Sex<td>
+												<select id=sw>
+													<option value=m>Male
+													<option value=f>Female
+												</select>
+												<tr>
+												<td>Height <span id=thw>(Cms)</span>
+												<td><input id=hw><tr>
+												<td>
+												<button type=reset>Reset</button>
+												<td>
+												<button type=button onclick='bweight();'>Submit</a>
+												<tr><td>As per D R Miller Formula<td>
+												<input id=ibw class=op><tr>
+												<td>As per WHO recommendations<td>
+												<input id=ibw1 class=op>
+												<tr><td colspan=2 class=ac >This Calculator is suitable only for Adults over 18 years of age.
+										</table>
+									</form>
+								</div>
+							</div>
+				</div>
+		</div>
+	</div>
+	
+	
+	
+	<script>
+			function $()
+			{
+				var elements=new Array();
+				for (var i=0;i<arguments.length;i++)
+				{
+					var element=arguments[i];
+					if(typeof element=='string')
+						element=document.getElementById(element);
+					if(arguments.length==1)
+						return element;
+					elements.push(element);
+				}
+				return elements;
+			}			
+			
+			function msystem()
+			{
+				if($('msw').value=='metric')
+				{
+					$('thw').innerHTML=' (Cms)';
+				}
+				else
+				{
+					$('thw').innerHTML=' (inches)';
+				};
+				if($('msm').value=='metric')
+				{
+					$('thm').innerHTML=' (Cms)';
+					$('twm').innerHTML=' (Kgs)';
+				}
+				else
+				{
+					$('thm').innerHTML=' (inches)';
+					$('twm').innerHTML=' (lbs)';
+				};
+				if($('msf').value=='metric')
+				{
+					$('thf').innerHTML=' (Cms)';
+					$('tneck').innerHTML=' (Cms)';
+					$('twaist').innerHTML=' (Cms)';
+					$('thips').innerHTML=' (Cms)';
+				}
+				else
+				{
+					$('thf').innerHTML=' (inches)';
+					$('tneck').innerHTML=' (inches)';
+					$('twaist').innerHTML=' (inches)';
+					$('thips').innerHTML=' (inches)';
+				}
+			}
+			function bmass ()
+			{
+				var ms=$('msm').value;
+				var height=$('hm').value;
+				var weight=$('wm').value;
+				if(height==null || height.length==0 || weight==null || weight.length==0 )
+				{
+					$('bmi').value="Pl. enter data.";
+				}
+				else
+				{
+					$('bmi').value="";
+				}
+				if(ms=='metric'&&height>0)
+				{
+					$('bmi').value=Math.round(weight/(height*height/10000)*100)/100+" kg/m2 ";
+				}
+				else if(ms=='us'&&height>0)
+				{
+					$('bmi').value=Math.round(703*weight/(height*height)*100)/100+" kg/m2 ";
+				}
+			}
+			
+			function bweight ()
+			{
+				var ms=$('msw').value;
+				var sex=$('sw').value;
+				var height=$('hw').value;
+				if(height==null || height.length==0 )
+				{
+					$('ibw').value="Pl. enter data.";
+				}
+				else
+				{
+					$('ibw').value="";
+				}
+				if(ms=='metric'&&height>0&&sex=='m')
+				{
+					$('ibw').value=Math.round(56.2*1+(height*.39-152.4*.39)*1.41)*1+" Kgs";
+				}
+				else if(ms=='metric'&&height>0&&sex=='f')
+				{
+					$('ibw').value=Math.round(53.1*1+(height*.39-152.4*.39)*1.36)*1+" Kgs";
+				}
+				else if(ms=='us'&&height>0&&sex=='m')
+				{
+					$('ibw').value=Math.round(56.2*2.20462+(height*1-60)*1.41*2.20462)*1+" lbs";
+				}
+				else if(ms=='us'&&height>0&&sex=='f')
+				{
+					$('ibw').value=Math.round(53.1*2.20462+(height*1-60)*1.36*2.20462)*1+" lbs";
+				}
+				if(ms=='metric'&&height>0)
+				{
+					$('ibw1').value=Math.round(18.5*(height*height/10000))+" Kgs-" +Math.round(25*(height*height/10000))+" Kgs";
+				}
+				else if(ms=='us'&&height>0){$('ibw1').value=Math.round(18.5*(height*height)/703)+" lbs-" +Math.round(25*(height*height)/703)+" lbs";
+				}
+			}
+			
+			
+			
+			
+			function bfat ()
+			{
+				var ms=$('msf').value;
+				var sex=$('sf').value;
+				var height=$('hf').value;
+				var neck=$('neck').value;
+				var waist=$('waist').value;
+				var hips=$('hips').value;
+				var ibf;
+				var bfc;
+				if(height==null || height==0 || neck==null || neck==0 || waist==null || waist==0)
+				{
+					$('bf').value="Pl. enter data.";
+				}
+				else
+				{
+					$('bf').value="";
+				}
+				if(ms=='metric'&&sex=='m'&&height>0&&waist>0&&neck> 0)
+				{
+					ibf=Math.round((86.010*(Math.log(waist*1-neck*1)/Math.log(10))-70.041*(Math.log(height)/Math.log(10))+30.30*1)*100)/100;
+					if(ibf<=5)
+					{
+						bfc='Essential';
+					}
+					else if(ibf>5&&ibf<=17)
+					{
+						bfc='Fit';
+					}
+					else if(ibf>17&&ibf<=25)
+					{
+						bfc='Acceptable';
+					}
+					else if(ibf>25 )
+					{
+						bfc='Obese';
+					}
+					$('bf').value=ibf+" % ";
+					$('nbf').value=bfc;
+				}
+				else if(ms=='us'&&sex=='m'&&height>0&&waist>0&&neck> 0)
+				{
+					ibf= Math.round((86.010*(Math.log(waist*1-neck*1)/Math.log(10))-70.041*(Math.log(height)/Math.log(10))+36.76*1)*100)/100;
+					if(ibf<=5)
+					{
+						bfc='Essential';
+					}
+					else if(ibf>5&&ibf<=17)
+					{
+						bfc='Fit';
+					}
+					else if(ibf>17&&ibf<=25)
+					{
+						bfc='Acceptable';
+					}
+					else if(ibf>25 ) 
+					{
+						bfc='Obese';
+					}
+					$('bf').value=ibf+" % ";
+					$('nbf').value=bfc;
+				}
+				else if(ms=='metric'&&sex=='f'&&height>0&&waist>0&&neck> 0)
+				{
+					ibf= Math.round((163.205*(Math.log(waist*1+hips*1-neck*1)/Math.log(10))-97.684*(Math.log(height)/Math.log(10))-104.912*1)*100)/100;
+					if(ibf<=15)
+					{
+						bfc='Essential';
+					}
+					else if(ibf>15&&ibf<=24)
+					{
+						bfc='Fit';
+					}
+					else if(ibf>24&&ibf<=31)
+					{
+						bfc='Acceptable';
+					}
+					else if(ibf>31 ) 
+					{
+						bfc='Obese';
+					}
+					$('bf').value=ibf+" % ";
+					$('nbf').value=bfc;
+				}
+				else if(ms=='us'&&sex=='f'&&height>0&&waist>0&&neck> 0)
+				{
+					ibf= Math.round((163.205*(Math.log(waist*1+hips*1-neck*1)/Math.log(10))-97.684*(Math.log(height)/Math.log(10))-78.387*1)*100)/100;
+					if(ibf<=15)
+					{
+						bfc='Essential';
+					}
+					else if(ibf>15&&ibf<=24)
+					{
+						bfc='Fit';
+					}
+					else if(ibf>24&&ibf<=31)
+					{
+						bfc='Acceptable';
+					}
+					else if(ibf>31 )
+					{
+						bfc='Obese';
+					}
+					$('bf').value=ibf+" % ";
+					$('nbf').value=bfc;
+				}
+			}
+		</script>
+</body>
